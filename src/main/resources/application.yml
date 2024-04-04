@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-security-name
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring-security-demo
+    username: root
+    password: Nghia
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
