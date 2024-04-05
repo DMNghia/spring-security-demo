@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: classpath:config/config.properties
   application:
     name: spring-security-name
   datasource:
@@ -10,3 +12,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY}
+      expiration: ${JWT_EXPIRATION}
+      refresh-token:
+        expiration: ${REFRESH_TOKEN_EXPIRATION}
+      issuer: ${JWT_ISSUER}

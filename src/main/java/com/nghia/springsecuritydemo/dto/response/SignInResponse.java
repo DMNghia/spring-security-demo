@@ -1,4 +1,4 @@
-package com.nghia.springsecuritydemo.dto.request;
+package com.nghia.springsecuritydemo.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class SignInRequest {
-    private String email;
-    private String password;
+public class SignInResponse {
+    private String token;
 }

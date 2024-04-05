@@ -4,10 +4,10 @@ import com.nghia.springsecuritydemo.dto.DrugDto;
 import com.nghia.springsecuritydemo.entity.Drug;
 import com.nghia.springsecuritydemo.respository.DrugRepository;
 import com.nghia.springsecuritydemo.service.DrugService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -21,8 +21,7 @@ public class DrugServiceIml implements DrugService {
 
     @Override
     public List<DrugDto> getAllDrugs(int page, int pageSize) {
-        Pageable pageable = (Pageable) PageRequest.of(page, pageSize);
-        List<Drug> drugs = drugRepository.getAllBy(pageable);
+        Page<Drug> drugs = drugRepository.findAll(PageRequest.of(page, pageSize));
         return drugs.stream().map(record -> DrugDto.builder()
                 .name(record.getName())
                 .description(record.getDescription())
