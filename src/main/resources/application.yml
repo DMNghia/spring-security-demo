@@ -21,3 +21,4 @@ application:
       refresh-token:
         expiration: ${REFRESH_TOKEN_EXPIRATION}
       issuer: ${JWT_ISSUER}
+    password-salt: ${PASSWORD_SALT}
