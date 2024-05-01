@@ -4,7 +4,7 @@ spring:
   application:
     name: spring-security-name
   datasource:
-    url: jdbc:mysql://localhost:3306/spring-security-demo
+    url: jdbc:mysql://localhost:3306/spring-security-demo?createDatabaseIfNotExist=true
     username: root
     password: Nghia
     driver-class-name: com.mysql.cj.jdbc.Driver

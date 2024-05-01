@@ -7,6 +7,7 @@ import com.nghia.springsecuritydemo.dto.response.BaseResponse;
 import com.nghia.springsecuritydemo.service.DrugService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +27,18 @@ public class DrugController {
 
     @GetMapping("")
     public ResponseEntity<?> getAllDrugs(@RequestBody GetDrugRequest request) {
-        List<DrugDto> result = drugService.getAllDrugs(request.getPageNo(), request.getPageSize());
-        return new ResponseEntity<>(BaseResponse.builder()
-                .status(StatusResponse.SUCCESS)
-                .message("Thanh Cong")
-                .data(result)
-                .build(), HttpStatus.OK);
+        try {
+            List<DrugDto> result = drugService.getAllDrugs(request.getPageNo(), request.getPageSize());
+            return new ResponseEntity<>(BaseResponse.builder()
+                    .status(StatusResponse.SUCCESS)
+                    .message("Thanh Cong")
+                    .data(result)
+                    .build(), HttpStatus.OK);
+        } catch (HttpMessageNotReadableException ex) {
+            return new ResponseEntity<>(BaseResponse.builder()
+                    .status(StatusResponse.ERROR)
+                    .message("Thiếu dữ kiện")
+                    .build(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
